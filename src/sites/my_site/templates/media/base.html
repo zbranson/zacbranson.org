@@ -1,0 +1,21 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Media test</title>	
+	<script src="/assets/media_player/audio.min.js"></script>	
+</head>
+<body>
+<script>
+  audiojs.events.ready(function() {
+    var as = audiojs.createAll();
+  });
+</script>
+<div>
+	<div>
+		<div class="content">
+		{% block content %}{% endblock %}
+		</div>
+	</div>
+</div>
+</body>
+</html>

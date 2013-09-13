@@ -1,0 +1,11 @@
+*.pyc
+*.swp
+*.bak
+*.mo
+*.db
+.sass-cache
+.ropeproject
+.noseids
+.directory
+tmux.sh
+src/sites/env

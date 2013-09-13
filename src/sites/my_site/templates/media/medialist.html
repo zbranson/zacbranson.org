@@ -1,0 +1,41 @@
+{% extends 'media/base.html' %}
+
+{% block content %}
+	<h3>Media</h3>
+  <p><a href="/media/test/">New Upload</a></p>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Action</th>
+				<th>Title</th>
+				<th>Filename</th>
+				<th>Url</th>
+				<th>Created</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% if list %}
+			{% for l in list %}
+				<tr>
+					<td>
+            <a href="{{ l.get_delete_url }}">Delete</a> | 
+            <a href="{{ l.get_download_url }}">Download</a> |
+             <!--
+             <embed type="application/x-shockwave-flash" src="http://www.google.com/reader/ui/3523697345-audio-player.swf" quality="best" flashvars="audioUrl={{l.get_absolute_url}}" width="500" height="27"></embed>
+             -->
+             <audio src="{{l.get_absolute_url}}" preload="auto" />
+          </td>
+					<td>{{ l.title }}</td>
+					<td>{{ l.filename }}</td>
+					<td>{{ l.get_absolute_url }}</td>
+					<td>{{ l.created.year }}-{{l.created.month }}-{{ l.created.day }}</td>
+				</tr>
+			{% endfor %}
+		{% else %}
+			<tr>
+				<td colspan="6">No Media File</td>
+			</tr>
+		{% endif %}
+		</tbody>
+	</table>
+{% endblock %}

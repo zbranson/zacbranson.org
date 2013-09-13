@@ -1,0 +1,36 @@
+application: lwinmoe
+version: 3
+runtime: python27
+api_version: 1
+threadsafe: false
+
+skip_files:
+- config.rb
+- Gemfile
+- ^(.*/)?.*\.swp$
+- ^(.*/)?.*\.sqlite$
+- ^(.*/)?.*\.pyc$
+- env
+- assets/uploads/
+- assets/css_src/
+- \.sass-cache
+- \.git
+
+builtins:
+- remote_api: on
+- deferred: on
+
+libraries:
+- name: django
+  version: "latest"
+
+handlers:
+- url: /assets
+  static_dir: assets 
+
+- url: /favicon\.ico
+  static_files: assets/img/favicon.ico
+  upload: assets/img/favicon\.ico
+
+- url: /.*
+  script: start.app
