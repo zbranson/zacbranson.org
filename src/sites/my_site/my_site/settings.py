@@ -6,6 +6,11 @@ import socket
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+ugettext = lambda s: s
+LANGUAGES = (
+  ('en', 'English'),
+)
+
 ADMINS = (
     ('Lwin Moe', 'lwinmoe@gmail.com'),
 )
@@ -13,30 +18,24 @@ ADMINS = (
 MANAGERS = ADMINS
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
+LOCALE_PATHS = (os.path.join(PROJECT_ROOT, 'locale'),)
 
-DB_FILE = os.path.join(PROJECT_ROOT, 'my_site.db')
-PRODUCTION  = 'SERVER_SOFTWARE' in os.environ
-
-if 'SERVER_SOFTWARE' in os.environ and 'unicorn' in os.environ['SERVER_SOFTWARE']:
-    PRODUCTION = False
-    DEBUG = False
-    PRODUCTION_LOCAL = True
-else:
-    DEBUG = not PRODUCTION
+PRODUCTION  = True
+DEBUG = True
 
 TEMPLATE_DEBUG = DEBUG
 
-if not PRODUCTION:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-            'NAME': DB_FILE,                      # Or path to database file if using sqlite3.
-            'USER': '',                      # Not used with sqlite3.
-            'PASSWORD': '',                  # Not used with sqlite3.
-            'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-            'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-        }
+import secret
+DATABASES = {
+    'default': {
+        'ENGINE': secret.DATABASE_ENGINE,
+        'NAME': secret.DATABASE_NAME,
+        'USER': secret.DATABASE_USER,
+        'PASSWORD': secret.DATABASE_PASS,
+        'HOST': '',       # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',       # Set to empty string for default. Not used with sqlite3.
     }
+}
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
@@ -110,11 +109,13 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    #'app.middleware.UrlLocaleMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    #'django.middleware.locale.LocaleMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -131,6 +132,14 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, "templates"),
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+        "django.contrib.auth.context_processors.auth",
+        #"django.core.context_processors.debug",
+        "django.core.context_processors.i18n",
+        "django.core.context_processors.media",
+        "django.core.context_processors.request",
+)
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -144,11 +153,6 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'app',
 )
-
-if not PRODUCTION:
-    INSTALLED_APPS += (
-        'south',
-    )
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

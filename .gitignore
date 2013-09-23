@@ -9,3 +9,6 @@
 .directory
 tmux.sh
 src/sites/env
+mysite
+secret.py
+sync.sh

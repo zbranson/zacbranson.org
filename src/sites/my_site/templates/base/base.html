@@ -7,6 +7,7 @@
   <!-- bootstrap -->
   <link href="{{MEDIA_URL}}css/bootstrap.min.css" rel="stylesheet" media="screen">
   <link href="{{MEDIA_URL}}css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+  <link href="{{MEDIA_URL}}css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
   <link href="{{MEDIA_URL}}css/style.css" rel="stylesheet" media="screen">
   <!-- end bootstrap -->
   <meta property="fb:app_id" content="525853894139617"/> <!-- facebook -->
@@ -35,49 +36,11 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>
-<div class="navbar-wrapper">
-  <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
-  <div class="container">
-    <div class="navbar navbar-inverse">
-      <div class="navbar-inner">
-        <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). 
-             Include responsive CSS to utilize. -->
-        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="brand" href="/"></a>
-        <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
-        <div class="nav-collapse collapse">
-          <ul class="nav">
-            <li {% if page == 'home' %}class="active" {% endif %}><a href="/">About</a></li>
-            <li {% if page == 'education' %}class="active" {% endif %}><a href="/education/">Education</a></li>
-            <li {% if page == 'work' %}class="active" {% endif %}><a href="/work/">Work</a></li>
-            <li {% if page == 'resume' %}class="active" {% endif %}><a href="/resume/">Resume</a></li>
-            <li><a href="http://blog.lwinmoe.org">Blog</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div><!-- /.navbar-inner -->
-    </div><!-- /.navbar -->
-  </div> <!-- /.container -->
-</div><!-- /.navbar-wrapper -->
 
-<div class="container marketing">
-  <!-- carousel -->
-  <!-- {% include "base/_carousel.html" %} -->
-  <!-- /.carousel -->
-  
-  <!-- start the featurettes -->
-  {% block content %}{% endblock %}
-  <!-- /.end the featurettes -->
-  
-  <!-- footer -->
-  {% include "base/_footer.html" %}
-
-</div><!-- /.container -->
-
-{% include "base/_javascripts.html" %}
+{% include 'base/_menu.html' %}
+{% block content %}{% endblock %}
+{% include "base/_footer.html" %}
+{% include "base/_js.html" %}
 
 <script>
   !function ($) {

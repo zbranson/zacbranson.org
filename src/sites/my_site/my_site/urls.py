@@ -18,9 +18,8 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
 )
 
-if not settings.PRODUCTION:
-    urlpatterns += patterns('',
-        (r'^assets/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, 'show_indexes':False}),)
+urlpatterns += patterns('',
+    (r'^assets/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, 'show_indexes':False}),)
 
 urlpatterns += patterns('',
     (r'^robots\.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: ", mimetype="text/plain")),
