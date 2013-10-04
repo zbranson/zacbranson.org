@@ -3,7 +3,7 @@ import os
 import sys
 import socket
 
-DEBUG = False
+DEBUG=True
 TEMPLATE_DEBUG = DEBUG
 
 ugettext = lambda s: s

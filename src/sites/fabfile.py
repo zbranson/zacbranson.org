@@ -5,18 +5,34 @@ basic project tasks
 import re
 import os
 import time
-from fabric.api import local, cd
+from fabric.api import *
 from fabric.contrib.files import sed
 from fabric.contrib import django
 
 #database = os.getenv("DATABASE")
 #DEFAUL_DATABASE = database or 'languages'
 
+env.hosts = ['lwinmoe@lwinmoe.webfactional.com']
+serverdir = "/home/lwinmoe/webapps/lwinmoe/my_site/"
+localdir = os.getcwd()
+
+#If a line that equals init exists in the file on the server, replaces that line with change
+def switch(init, change, file):
+    run("""sed "s/%s/%s/g" %s>%s.tmp && mv %s.tmp %s""" % (init, change, file, file, file, file))
+
+# Syncs all files in localdir (ignoring all files in --exclude="foo")
+# Change DEBUG=True to DEBUG=False on the remote server.
+def deploy():
+    local("rsync -atzv --delete --exclude='.sass-cache' --exclude='*.pyc' %s/ %s:%s" % (localdir, env.hosts[0], serverdir))
+    #switch("URL_PREFIX = ''", "URL_PREFIX = '%s'" % urlprefix, serverdir + "LLWeb/settings.py")
+    switch("DEBUG=True", "DEBUG=False", serverdir + "my_site/settings.py")
+
 application_name = 'lwinmoe'
 def production():
     global application_name 
     application_name = 'lwinmoe'
 
+'''
 def deploy():
     compile_js()
     app_yml = open('app.yml.tmpl').read()
@@ -27,6 +43,7 @@ def deploy():
     local("appcfg.py --no_cookies update . ")
     # remove duplicated files
     #local("rm -rf app/locale")
+'''
 
 def _get_javascript_files():
     javascripts = (

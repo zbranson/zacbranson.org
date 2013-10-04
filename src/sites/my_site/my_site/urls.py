@@ -6,6 +6,9 @@ from django.http import HttpResponse
 from django.contrib import admin
 admin.autodiscover()
 
+handler500 = 'app.views.handler_500'
+handler404 = 'app.views.handler_404'
+
 urlpatterns = patterns('',
     # Example:
     (r'^', include('app.urls')),

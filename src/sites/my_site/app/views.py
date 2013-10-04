@@ -18,3 +18,14 @@ def education(request):
 
 def facebook(request):
   return render_to_response('app/facebook.html', {"page":"work"}, context_instance=RequestContext(request))
+
+def handler_500(request):
+    r = render_to_response('500.html', context_instance=RequestContext(request))
+    r.status_code = 500
+    return r
+
+
+def handler_404(request):
+    r = render_to_response('404.html', context_instance=RequestContext(request))
+    r.status_code = 404
+    return r

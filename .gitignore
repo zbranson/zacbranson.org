@@ -12,3 +12,4 @@ src/sites/env
 mysite
 secret.py
 sync.sh
+.idea
