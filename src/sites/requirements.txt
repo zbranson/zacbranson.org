@@ -12,7 +12,6 @@ django-taggit
 feedparser
 fudge
 gunicorn
-httplib2
 python-openid
 pytz
 requests
