@@ -13,7 +13,7 @@ from fabric.contrib import django
 #DEFAUL_DATABASE = database or 'languages'
 
 env.hosts = ['lwinmoe@lwinmoe.webfactional.com']
-serverdir = "/home/lwinmoe/webapps/lwinmoe/my_site/"
+serverdir = "/home/lwinmoe/webapps/lwinmoe_v1/my_site/"
 localdir = os.getcwd()
 
 #If a line that equals init exists in the file on the server, replaces that line with change
@@ -23,7 +23,7 @@ def switch(init, change, file):
 # Syncs all files in localdir (ignoring all files in --exclude="foo")
 # Change DEBUG=True to DEBUG=False on the remote server.
 def deploy():
-    local("rsync -atzv --delete --exclude='.sass-cache' --exclude='*.pyc' %s/ %s:%s" % (localdir, env.hosts[0], serverdir))
+    local("rsync -atzv --delete --exclude-from='exclude_list.txt' %s/ %s:%s" % (localdir, env.hosts[0], serverdir))
     #switch("URL_PREFIX = ''", "URL_PREFIX = '%s'" % urlprefix, serverdir + "LLWeb/settings.py")
     switch("DEBUG=True", "DEBUG=False", serverdir + "my_site/settings.py")
 

@@ -4,7 +4,6 @@ PyYAML
 South
 WebOb
 argparse
-distribute
 django-debug-toolbar
 django-devserver
 django-ratings
