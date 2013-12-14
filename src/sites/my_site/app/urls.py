@@ -1,8 +1,8 @@
-from django.conf.urls import *
+from django.conf.urls import patterns, url
 
 urlpatterns = patterns('app.views',
-    (r'^$', 'index'),
-    (r'^work/$', 'work'),
-    (r'^education/$', 'education'),
-    (r'^resume/$', 'resume'),
+    url(r'^$', 'index', name='index'),
+    url(r'^work/$', 'work', name='work'),
+    url(r'^education/$', 'education', name='education'),
+    url(r'^resume/$', 'resume', name='resume'),
 )

@@ -9,14 +9,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="/"></a>
+              <a class="navbar-brand" href="{% url 'index' %}"></a>
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li {% if page == 'home' %}class="active" {% endif %}><a href="/">About</a></li>
-                <li {% if page == 'education' %}class="active" {% endif %}><a href="/education/">Education</a></li>
-                <li {% if page == 'work' %}class="active" {% endif %}><a href="/work/">Work</a></li>
-                <li {% if page == 'resume' %}class="active" {% endif %}><a href="/resume/">Resume</a></li>
+                <li {% if page == 'home' %}class="active" {% endif %}><a href="{% url 'index' %}">About</a></li>
+                <li {% if page == 'education' %}class="active" {% endif %}><a href="{% url 'education' %}">Education</a></li>
+                <li {% if page == 'work' %}class="active" {% endif %}><a href="{% url 'work' %}">Work</a></li>
+                <li {% if page == 'resume' %}class="active" {% endif %}><a href="{% url 'resume' %}">Resume</a></li>
                 <li class="dropdown ">
                   <a href="/" class="dropdown-toggle" data-toggle="dropdown">Social Media<b class="caret"></b></a>
                   <ul class="dropdown-menu">
