@@ -29,7 +29,7 @@ DATABASES = {
         'NAME': secret.DATABASE_NAME,
         'USER': secret.DATABASE_USER,
         'PASSWORD': secret.DATABASE_PASS,
-        'HOST': '',       # Set to empty string for localhost. Not used with sqlite3.
+        'HOST': secret.DATABASE_HOST,
         'PORT': '',       # Set to empty string for default. Not used with sqlite3.
     }
 }
