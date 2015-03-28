@@ -1,7 +1,6 @@
 Django
 Markdown
 PyYAML
-South
 WebOb
 argparse
 django-debug-toolbar

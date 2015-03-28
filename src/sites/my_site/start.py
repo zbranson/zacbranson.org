@@ -16,11 +16,9 @@ def add_python_path():
   sys.path.insert(0, os.path.join(packages, "httplib2.zip"))
   sys.path.insert(0, os.path.join(packages, "oauth2.zip"))
   sys.path.insert(0, os.path.join(packages, "openid.zip"))
-  sys.path.insert(0, os.path.join(packages, "south.zip"))
   sys.path.insert(0, os.path.join(packages, "markdown.zip"))
   sys.path.insert(0, os.path.join(packages, "djangoratings.zip"))
   sys.path.insert(0, os.path.join(packages, "taggit.zip"))
-  sys.path.insert(0, os.path.join(packages, "debug_toolbar.zip"))
   sys.path.insert(0, os.path.join(packages, "pytz.zip"))
   sys.path.insert(0, os.path.join(packages, "simplejson.zip"))
   sys.path.insert(0, os.path.join(packages, "requests.zip"))
@@ -30,5 +28,5 @@ def add_python_path():
 # modify path
 add_python_path()
 
-import django.core.handlers.wsgi
-app = django.core.handlers.wsgi.WSGIHandler()
+from django.core.wsgi import get_wsgi_application
+app = get_wsgi_application()

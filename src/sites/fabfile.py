@@ -13,7 +13,7 @@ from fabric.contrib import django
 #DEFAUL_DATABASE = database or 'languages'
 
 env.hosts = ['lwinmoe@lwinmoe.webfactional.com']
-serverdir = "/home/lwinmoe/webapps/lwinmoe_v1/my_site/"
+serverdir = "/home/lwinmoe/webapps/lwinmoe/my_site/"
 localdir = os.getcwd()
 
 #If a line that equals init exists in the file on the server, replaces that line with change
