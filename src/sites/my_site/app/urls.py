@@ -5,4 +5,5 @@ urlpatterns = patterns('app.views',
     url(r'^work/$', 'work', name='work'),
     url(r'^education/$', 'education', name='education'),
     url(r'^resume/$', 'resume', name='resume'),
+    url(r'^projects/$', 'projects', name='projects'),
 )

@@ -16,14 +16,8 @@
                 <li {% if page == 'home' %}class="active" {% endif %}><a href="{% url 'index' %}">About</a></li>
                 <li {% if page == 'education' %}class="active" {% endif %}><a href="{% url 'education' %}">Education</a></li>
                 <li {% if page == 'work' %}class="active" {% endif %}><a href="{% url 'work' %}">Work</a></li>
+                <li {% if page == 'projects' %}class="projects" {% endif %}><a href="{% url 'projects' %}">Projects</a></li>
                 <li {% if page == 'resume' %}class="active" {% endif %}><a href="{% url 'resume' %}">Resume</a></li>
-                <li class="dropdown ">
-                  <a href="/" class="dropdown-toggle" data-toggle="dropdown">Social Media<b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="http://blog.lwinmoe.org" target="_blank">Blog</a></li>
-                    <li><a href="https://github.com/lwinmoe" target="_blank">GitHub</a></li>
-                  </ul>
-                </li>
              </ul>
             </div>
           </div>
